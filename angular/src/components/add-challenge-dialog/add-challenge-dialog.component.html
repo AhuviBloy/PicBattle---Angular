@@ -1,0 +1,28 @@
+<h2 mat-dialog-title> Add Challenge </h2>
+<mat-dialog-content style="border-radius: 0; overflow: hidden; padding: 20px;">
+  <form (ngSubmit)="onSubmit()" style="display:flex; flex-direction: column; gap: 20px;">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Challenge Title</mat-label>
+      <input matInput placeholder="title" type="text" [(ngModel)]="title" name="title" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Challenge description</mat-label>
+      <input matInput placeholder="description" type="text" [(ngModel)]="description" name="description" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Challenge Start Date</mat-label>
+      <input matInput placeholder="start" type="date" [(ngModel)]="startDate" name="start" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Challenge End Date</mat-label>
+      <input matInput placeholder="end" type="date" [(ngModel)]="endDate" name="end" required>
+    </mat-form-field>
+
+    <div style="display: flex; justify-content: space-between;">
+      <button mat-button type="submit">Save</button>
+      <button mat-button mat-dialog-close (click)="Close()">Close</button>
+    </div>
+  </form>
+</mat-dialog-content>

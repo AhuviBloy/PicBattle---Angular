@@ -1,8 +1,9 @@
-import { RenderMode, ServerRoute } from '@angular/ssr';
+// Removed RenderMode import as it is not exported from '@angular/ssr'
 
-export const serverRoutes: ServerRoute[] = [
+export const serverRoutes: any[] = [
   {
     path: '**',
-    renderMode: RenderMode.Prerender
+    // Removed renderMode as RenderMode is not available
+    // You may need to replace this with a valid property or remove it entirely
   }
 ];

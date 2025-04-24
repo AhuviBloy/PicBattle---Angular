@@ -1,0 +1,41 @@
+
+
+<button mat-button color="warn" (click)="openAddChallengeDialog()">add challenge</button>
+
+@if(challenges.length === 0){
+  <h1>No challenges available</h1>
+}
+@else {
+  <h1>Available challenges:</h1>
+}
+@for(course of challenges; track course){
+  <div class="course-wrapper">
+    <mat-card class="course-card">
+      <mat-card-header>
+        <mat-card-title>{{ course.title }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ course.description }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="primary" (click)="showLessonsForCourse(course.id)">
+          @if(showLessons == course.id) {
+            close
+          }
+          @else{
+            show lessons
+          }
+        </button>
+        <button mat-button color="warn" (click)="join(course.id)">join</button>
+        <button mat-button color="warn" (click)="leave(course.id)">leave</button>
+      </mat-card-actions>
+
+      @if(showLessons == course.id){
+      }
+    
+    </mat-card>
+  </div>
+}
+
+
+  

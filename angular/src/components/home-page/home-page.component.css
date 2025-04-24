@@ -1,0 +1,28 @@
+.spacer {
+    flex: 1 1 auto;
+  }
+  
+  .content {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    font-size: 1.2em;
+  }
+  
+  .content {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: Arial,sans-serif;
+    overflow: auto
+}
