@@ -58,6 +58,7 @@
   } @else {
     <div class="users-grid">
       @for(user of users; track user.id) {
+        @if(user.role != 0){
         <mat-card class="user-card">
           <div class="card-header">
             <!-- <div class="user-avatar">
@@ -122,7 +123,7 @@
             </div>
           </mat-card-content>
 
-          @if(isAdmin) {
+          <!-- @if(isAdmin) { -->
             <mat-card-actions class="card-actions">
               <!-- <button mat-button color="primary">
                 <mat-icon>edit</mat-icon>
@@ -142,9 +143,10 @@
                 </button>
               }
             </mat-card-actions>
-          }
+          <!-- } -->
         </mat-card>
       }
+    }
     </div>
   }
 </div>

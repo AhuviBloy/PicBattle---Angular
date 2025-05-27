@@ -108,7 +108,7 @@ export class AuthService {
   // Add an event emitter to notify components of login status changes
   loginStatusChanged = new EventEmitter<boolean>();
   
-  private apiUrl =  `${environment.apiUrl}/api/user` // Adjust this URL to your auth endpoint
+  private apiUrl =  `${environment.apiUrl}/api/auth` // Adjust this URL to your auth endpoint
 
   constructor(private http: HttpClient) {}
 
@@ -117,6 +117,8 @@ export class AuthService {
       mergeMap((response: any) => {
         const decoded = jwtDecode<JwtPayload>(response.token);
         const role = decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+        console.log("======================");
+        
         console.log('Decoded JWT:', decoded);
         console.log('User role:', role);
 
@@ -127,6 +129,8 @@ export class AuthService {
           this.loginStatusChanged.emit(true);
           return of(response); // מחזיר את התגובה הרגילה
         } else {
+          console.log("errorrrrrrrrrrr");
+          
           return throwError(() => new Error('גישה מותרת למנהלים בלבד'));
         }
       })
@@ -135,7 +139,7 @@ export class AuthService {
 
   logout(): void {
     // Remove user data from session storage
-    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('admin');
     // Emit login status change
     this.loginStatusChanged.emit(false);
   }
@@ -146,7 +150,7 @@ export class AuthService {
   }
 
   getUserId(): number | null {
-    const userJson = sessionStorage.getItem('user');
+    const userJson = sessionStorage.getItem('admin');
     if (userJson) {
       const user = JSON.parse(userJson);
       return user.id;

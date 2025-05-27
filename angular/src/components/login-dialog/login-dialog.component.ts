@@ -103,7 +103,7 @@ export class LoginDialogComponent {
       },
       error: (error) => {
         this.isLoading = false;
-        this.errorMessage = 'גישה מותרת רק למנהלים';
+        this.errorMessage = 'גישה מותרת רק למנהלים';        
         console.error('Login error:', error);
       }
     });
