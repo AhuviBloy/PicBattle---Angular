@@ -39,7 +39,7 @@ export class RegisterDialogComponent {
 
       // this.userService.setUserDetails().subscribe(
       //   (user: User) => {
-      //     localStorage.setItem('user', JSON.stringify(user));
+      //     sessionStorage.setItem('user', JSON.stringify(user));
       //   },
       //   (error) => {
       //     alert('Failed to add user');

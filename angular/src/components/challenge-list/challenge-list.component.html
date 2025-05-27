@@ -1,4 +1,4 @@
-
+<!-- 
 
 <button mat-button color="warn" (click)="openAddChallengeDialog()">add challenge</button>
 
@@ -17,19 +17,6 @@
       <mat-card-content>
         <p>{{ course.description }}</p>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-button color="primary" (click)="showLessonsForCourse(course.id)">
-          @if(showLessons == course.id) {
-            close
-          }
-          @else{
-            show lessons
-          }
-        </button>
-        <button mat-button color="warn" (click)="join(course.id)">join</button>
-        <button mat-button color="warn" (click)="leave(course.id)">leave</button>
-      </mat-card-actions>
-
       @if(showLessons == course.id){
       }
     
@@ -39,3 +26,54 @@
 
 
   
+
+
+
+
+ -->
+
+
+
+ <div class="challenge-container">
+  <div class="header-section">
+    <h1 class="page-title">Challenges</h1>
+    <button mat-raised-button class="add-challenge-btn" (click)="openAddChallengeDialog()">
+      <mat-icon>add</mat-icon>
+      Add New Challenge
+    </button>
+  </div>
+
+  @if(challenges.length === 0) {
+    <div class="no-challenges">
+      <mat-icon class="no-challenges-icon">assignment</mat-icon>
+      <h2>No challenges available</h2>
+      <p>Create your first challenge to get started!</p>
+    </div>
+  } @else {
+    <div class="challenges-grid">
+      @for(challenge of challenges; track challenge.id) {
+        <mat-card class="challenge-card">
+          <mat-card-header>
+            <mat-card-title class="challenge-title">{{ challenge.title }}</mat-card-title>
+            <mat-card-subtitle class="challenge-date">
+              Created: {{ challenge.startDate | date:'short' }}
+            </mat-card-subtitle>
+            <mat-card-subtitle class="challenge-date">
+              ended:{{ challenge.endDate | date:'short' }}     
+           </mat-card-subtitle>
+          </mat-card-header>
+          
+        
+          
+          <mat-card-actions class="challenge-actions">
+            <button mat-raised-button color="primary" (click)="viewCreations(challenge.id)">
+              <mat-icon>visibility</mat-icon>
+              View Creations
+            </button>
+          </mat-card-actions>
+          
+        </mat-card>
+      }
+    </div>
+  }
+</div>

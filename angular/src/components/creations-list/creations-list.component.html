@@ -1,0 +1,193 @@
+<!-- <div class="creations-container">
+    <div class="header-section">
+      <div class="header-content">
+        <button mat-icon-button class="back-btn" (click)="goBack()">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <div class="header-text">
+          <h1 class="page-title">Challenge Creations</h1>
+          <p class="challenge-name" *ngIf="challengeTitle">{{ challengeTitle }}</p>
+        </div>
+      </div>
+      
+    </div>
+  
+    @if(loading) {
+      <div class="loading-container">
+        <mat-spinner></mat-spinner>
+        <p>Loading creations...</p>
+      </div>
+    } @else if(creations.length === 0) {
+      <div class="no-creations">
+        <mat-icon class="no-creations-icon">palette</mat-icon>
+        <h2>No creations yet</h2>
+      </div>
+    } @else {
+      <div class="creations-grid">
+        @for(creation of creations; track creation.id) {
+          <mat-card class="creation-card">
+            <div class="creation-image" *ngIf="creation.imageUrl">
+              <img [src]="creation.imageUrl" [alt]="creation.title" (click)="viewCreationDetails(creation.id)">
+              <div class="image-overlay">
+                <button mat-icon-button class="view-btn" (click)="viewCreationDetails(creation.id)">
+                  <mat-icon>visibility</mat-icon>
+                </button>
+              </div>
+            </div>
+            
+            <mat-card-header>
+              <mat-card-title class="creation-title">{{ creation.title }}</mat-card-title>
+              <mat-card-subtitle class="creation-creator">
+                by {{ creation.creatorName || 'Anonymous' }}
+              </mat-card-subtitle>
+            </mat-card-header>
+            
+            <mat-card-content>
+              <p class="creation-description">{{ creation.description }}</p>
+              <div class="creation-stats">
+                <div class="stat-item">
+                  <mat-icon>favorite</mat-icon>
+                  <span>{{ creation.votes || 0 }} Votes</span>
+                </div>
+                <div class="stat-item">
+                  <mat-icon>calendar_today</mat-icon>
+                  <span>{{ creation.createdDate | date:'short' }}</span>
+                </div>
+              </div>
+            </mat-card-content>
+            
+            <mat-card-actions class="creation-actions">
+              
+            </mat-card-actions>
+          </mat-card>
+        }
+      </div>
+    }
+  </div> -->
+
+
+
+
+  <div class="creations-container">
+    <div class="header-section">
+      <div class="header-content">
+        <button mat-icon-button class="back-btn" (click)="goBack()">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <div class="header-text">
+          <h1 class="page-title">Challenge Creations</h1>
+          <p class="challenge-name" *ngIf="challengeTitle">{{ challengeTitle }}</p>
+        </div>
+      </div>
+      
+      <!-- <button mat-raised-button color="primary" class="add-creation-btn" (click)="openAddCreationDialog()">
+        <mat-icon>add</mat-icon>
+        Add Creation
+      </button> -->
+    </div>
+  
+    @if(loading) {
+      <div class="loading-container">
+        <mat-spinner color="primary"></mat-spinner>
+        <p>Loading creations...</p>
+      </div>
+    } @else if(creations.length === 0) {
+      <div class="no-creations">
+        <mat-icon class="no-creations-icon">palette</mat-icon>
+        <h2>No creations yet</h2>
+        <p>Be the first to submit your creation!</p>
+      </div>
+    } @else {
+      <div class="creations-grid">
+        @for(creation of creations; track creation.id) {
+          <mat-card class="creation-card">
+            <div class="creation-image" *ngIf="creation.imageUrl">
+              <img [src]="creation.imageUrl" [alt]="creation.title" >
+              <!-- <div class="image-overlay">
+                <button mat-icon-button class="view-btn" (click)="viewCreationDetails(creation.id)">
+                  <mat-icon>visibility</mat-icon>
+                </button>
+                @if(isAdmin) {
+                  <button mat-icon-button class="delete-btn" (click)="deleteCreation(creation.id, creation.title)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                }
+              </div> -->
+            </div>
+            
+            <mat-card-header>
+              <mat-card-title class="creation-title">{{ creation.title }}</mat-card-title>
+              <mat-card-subtitle class="creation-creator">
+                by {{ creation.creatorName || 'Anonymous' }}
+              </mat-card-subtitle>
+            </mat-card-header>
+            
+            <mat-card-content>
+              @if(!editingDescription[creation.id]) {
+                <div class="description-section">
+                  <p class="creation-description">
+                    {{ creation.description || 'No description available' }}
+                  </p>
+                  @if(isAdmin) {
+                    <button mat-icon-button class="edit-description-btn" 
+                            (click)="startEditDescription(creation.id, creation.description)"
+                            matTooltip="Edit description">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                  }
+                </div>
+              } @else {
+                <div class="edit-description-section">
+                  <mat-form-field class="description-field" appearance="outline">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput 
+                             [(ngModel)]="tempDescriptions[creation.id]"
+                             placeholder="Enter description..."
+                             rows="3"></textarea>
+                  </mat-form-field>
+                  <div class="edit-actions">
+                    <button mat-button (click)="cancelEditDescription(creation.id)">
+                      <mat-icon>close</mat-icon>
+                      Cancel
+                    </button>
+                    <button mat-raised-button color="primary" (click)="saveDescription(creation.id)">
+                      <mat-icon>save</mat-icon>
+                      Save
+                    </button>
+                  </div>
+                </div>
+              }
+  
+              <div class="creation-stats">
+                <div class="stat-item">
+                  <mat-icon>favorite</mat-icon>
+                  <span>{{ creation.votes || 0 }} Votes</span>
+                </div>
+                <div class="stat-item">
+                  <mat-icon>calendar_today</mat-icon>
+                  <span>{{creation.createdat| date:'short' }}</span>
+                </div>
+              </div>
+            </mat-card-content>
+            
+            <mat-card-actions class="creation-actions">
+              <!-- <button mat-button color="primary" (click)="voteForCreation(creation.id)">
+                <mat-icon>thumb_up</mat-icon>
+                Vote
+              </button>
+              <button mat-button (click)="viewCreationDetails(creation.id)">
+                <mat-icon>visibility</mat-icon>
+                View Details
+              </button> -->
+              @if(isAdmin) {
+                <button mat-button color="warn" (click)="deleteCreation(creation.id, creation.title)">
+                  <mat-icon>delete</mat-icon>
+                  Delete
+                </button>
+              }
+            </mat-card-actions>
+          </mat-card>
+        }
+      </div>
+    }
+  </div>
