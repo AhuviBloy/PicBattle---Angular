@@ -1,0 +1,44 @@
+
+<h2 mat-dialog-title>Login to the system</h2>
+<mat-dialog-content>
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <div class="form-container">
+      @if(errorMessage) {
+        <div class="error-message">{{ errorMessage }}</div>
+      }
+      
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>email </mat-label>
+        <input 
+          matInput 
+          type="email" 
+          name="email" 
+          [(ngModel)]="credentials.email" 
+          required 
+          email
+          placeholder="Enter your email address">
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>password</mat-label>
+        <input 
+          matInput 
+          type="password" 
+          name="password" 
+          [(ngModel)]="credentials.password" 
+          required
+          placeholder="Enter your password">
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button 
+    mat-raised-button 
+    color="primary" 
+    (click)="onSubmit()" 
+    [disabled]="isLoading">
+    {{ isLoading ? 'Connecting...' : 'Log in' }}
+  </button>
+</mat-dialog-actions>

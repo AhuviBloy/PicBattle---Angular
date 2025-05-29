@@ -1,0 +1,47 @@
+
+  <div class="container">
+    <mat-toolbar class="top-toolbar">
+      <button mat-icon-button (click)="toggleSidebar()" class="menu-toggle" title="פתח/סגור תפריט">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="toolbar-title">Challenge Management System  </span>
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="logout()" class="logout-btn" title="התנתק">
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+    </mat-toolbar>
+  
+    <div class="main-content">
+      <nav class="sidebar" 
+           [class.expanded]="isExpanded"
+        >
+        
+        <div class="nav-items">
+          <a routerLink="/challenges" 
+             routerLinkActive="active" 
+             class="nav-item">
+            <mat-icon class="nav-icon">assignment</mat-icon>
+            <span class="nav-text">Challenges</span>
+          </a>
+          
+          <a routerLink="/users" 
+             routerLinkActive="active" 
+             class="nav-item">
+            <mat-icon class="nav-icon">people</mat-icon>
+            <span class="nav-text">Users</span>
+          </a>
+
+          <a routerLink="/analytics" 
+            routerLinkActive="active" 
+            class="nav-item">
+            <mat-icon class="nav-icon">bar_chart</mat-icon>
+         <span class="nav-text">Analytics</span>
+       </a>
+        </div>
+      </nav>
+  
+      <main class="content-area" [class.sidebar-expanded]="isExpanded">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+  </div>

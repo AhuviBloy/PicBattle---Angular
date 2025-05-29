@@ -1,0 +1,22 @@
+@if(loading) {
+    <div class="loading-container">
+      <mat-spinner color="primary"></mat-spinner>
+      <p>Loading chart...</p>
+    </div>
+  }
+  @else {
+    <div>
+        <div>
+          <apx-chart
+            [series]="barChartSeries"
+            [chart]="barChart"
+            [xaxis]="barChartXaxis"
+            [plotOptions]="barChartPlotOptions"
+            [dataLabels]="barChartDataLabels"
+            [title]="barChartTitle"
+            [yaxis]="barChartYAxis"
+            [tooltip]="barChartTooltip"
+          ></apx-chart>
+        </div>
+      </div>
+  }

@@ -1,0 +1,27 @@
+:host {
+    display: block;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  body,div,h1{
+    font-family: 'Rubik', sans-serif;   
+    margin: 30px;
+  }
+
+
+  /* Loading State */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  color: #64748b;
+  gap: 16px;
+}
+
+.loading-container p {
+  font-size: 16px;
+  margin: 0;
+}
